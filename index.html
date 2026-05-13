@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayam Segar – Ayam Kampung Premium Malaysia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --gold-dark: #C47D0B;
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --cream: #FFF8F0;
+    --white: #FFFFFF;
+    --brown: #5D2E0C;
+    --dark: #1A0A00;
+    --green: #27AE60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: rgba(26,10,0,0.92);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.8rem 2rem;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--dark) !important;
+    padding: 0.45rem 1.2rem; border-radius: 50px;
+    font-weight: 800 !important;
+  }
+  .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+  .hamburger span { width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A0A00 0%, #3D1A00 50%, #5D2E0C 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23F5A623' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold); color: var(--dark);
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; padding: 0.35rem 1rem;
+    border-radius: 50px; margin-bottom: 1.5rem;
+    animation: fadeDown 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.1; margin-bottom: 1rem;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: rgba(255,255,255,0.75);
+    max-width: 520px; margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 1s 0.6s ease both; }
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 0.85rem 2rem; border-radius: 50px;
+    font-weight: 800; font-size: 1rem; text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(245,166,35,0.5); }
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.4); color: #fff;
+    padding: 0.85rem 2rem; border-radius: 50px;
+    font-weight: 700; font-size: 1rem; text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); background: rgba(245,166,35,0.1); }
+  .hero-emoji {
+    font-size: clamp(5rem, 15vw, 9rem);
+    display: block; margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  .hero-stats {
+    display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;
+    margin-top: 3rem; animation: fadeUp 1s 0.8s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 1.8rem; font-weight: 900; color: var(--gold); }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* WAVE */
+  .wave-top { display: block; width: 100%; overflow: hidden; line-height: 0; }
+  .wave-top svg { display: block; }
+
+  /* SECTION */
+  section { padding: 5rem 2rem; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900; color: var(--brown); margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem; color: #666; max-width: 560px;
+    line-height: 1.7; margin-bottom: 3rem;
+  }
+  .center { text-align: center; }
+  .center .section-sub { margin-left: auto; margin-right: auto; }
+
+  /* KENAPA */
+  .kenapa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .kenapa-card {
+    background: var(--white);
+    border-radius: 20px; padding: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-top: 4px solid var(--gold);
+  }
+  .kenapa-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+  .kenapa-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .kenapa-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--brown); margin-bottom: 0.5rem; }
+  .kenapa-card p { font-size: 0.9rem; color: #666; line-height: 1.6; }
+
+  /* PRODUK */
+  .produk-bg { background: var(--dark); }
+  .produk-bg .section-title { color: var(--white); }
+  .produk-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .produk-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(245,166,35,0.2);
+    border-radius: 20px; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .produk-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+  .produk-img {
+    background: linear-gradient(135deg, #3D1A00, #5D2E0C);
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 5rem; position: relative; overflow: hidden;
+  }
+  .produk-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 80%, rgba(245,166,35,0.15), transparent 70%);
+  }
+  .produk-badge {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--red); color: #fff;
+    font-size: 0.65rem; font-weight: 800; padding: 3px 10px;
+    border-radius: 50px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .produk-body { padding: 1.5rem; }
+  .produk-body h3 { font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 0.3rem; }
+  .produk-body p { font-size: 0.85rem; color: rgba(255,255,255,0.55); margin-bottom: 1rem; line-height: 1.5; }
+  .produk-footer { display: flex; align-items: center; justify-content: space-between; }
+  .harga { font-size: 1.3rem; font-weight: 900; color: var(--gold); }
+  .harga span { font-size: 0.75rem; color: rgba(255,255,255,0.4); font-weight: 400; }
+  .btn-pesan {
+    background: var(--gold); color: var(--dark);
+    border: none; padding: 0.5rem 1.2rem; border-radius: 50px;
+    font-weight: 800; font-size: 0.85rem; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-pesan:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(245,166,35,0.4); }
+
+  /* CARA ORDER */
+  .cara-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; max-width: 900px; margin: 0 auto;
+    position: relative;
+  }
+  .cara-card {
+    background: var(--white); border-radius: 20px; padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .cara-num {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--gold); color: var(--dark);
+    font-size: 1.3rem; font-weight: 900;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  .cara-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .cara-card h3 { font-size: 1rem; font-weight: 800; color: var(--brown); margin-bottom: 0.4rem; }
+  .cara-card p { font-size: 0.85rem; color: #888; line-height: 1.5; }
+
+  /* TESTIMONI */
+  .testi-bg { background: #FFF3E8; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; max-width: 1000px; margin: 0 auto;
+  }
+  .testi-card {
+    background: var(--white); border-radius: 20px; padding: 1.8rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    transition: transform 0.3s;
+  }
+  .testi-card:hover { transform: translateY(-4px); }
+  .stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.8rem; }
+  .testi-text { font-size: 0.95rem; color: #444; line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+  .avatar {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--red));
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 1rem;
+  }
+  .testi-name { font-weight: 800; font-size: 0.9rem; color: var(--brown); }
+  .testi-loc { font-size: 0.78rem; color: #999; }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: linear-gradient(135deg, var(--red-dark), var(--red));
+    padding: 5rem 2rem; text-align: center;
+  }
+  .cta-banner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 900; color: #fff; margin-bottom: 1rem;
+  }
+  .cta-banner p { font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+  .cta-wa {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #25D366; color: #fff;
+    padding: 1rem 2.5rem; border-radius: 50px;
+    font-weight: 800; font-size: 1.1rem; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cta-wa:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(37,211,102,0.5); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark); color: rgba(255,255,255,0.6);
+    text-align: center; padding: 2rem;
+    font-size: 0.85rem;
+  }
+  footer strong { color: var(--gold); }
+
+  /* FLOAT WHATSAPP */
+  .float-wa {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #25D366; color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; text-decoration: none;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+    animation: pulse 2s infinite;
+  }
+  .float-wa:hover { transform: scale(1.1); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-14px); }
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+    50%       { box-shadow: 0 6px 40px rgba(37,211,102,0.8); }
+  }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  @media (max-width: 640px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(26,10,0,0.97); padding: 1rem 2rem; gap: 1rem; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero { padding-top: 5rem; }
+    .hero-stats { gap: 1.2rem; }
+    .cara-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 400px) {
+    .cara-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🐔 AyamSegar</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#kenapa">Kelebihan</a></li>
+    <li><a href="#produk">Produk</a></li>
+    <li><a href="#cara">Cara Order</a></li>
+    <li><a href="#testi">Testimoni</a></li>
+    <li><a href="https://wa.me/60123456789" class="nav-cta">Pesan Sekarang</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">🌿 100% Ayam Kampung Tempatan</div>
+    <span class="hero-emoji">🐓</span>
+    <h1>Ayam <span>Segar</span> &amp;<br>Halal Terjamin</h1>
+    <p>Kami membekalkan ayam kampung segar, diproses bersih, dan dihantar terus ke pintu rumah anda pada hari yang sama.</p>
+    <div class="hero-btns">
+      <a href="#produk" class="btn-primary">🛒 Lihat Produk</a>
+      <a href="https://wa.me/60123456789" class="btn-outline">💬 Hubungi Kami</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">5,000+</div>
+        <div class="stat-label">Pelanggan Setia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Halal Bersijil</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">Sehari</div>
+        <div class="stat-label">Penghantaran Sama Hari</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-top">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z" fill="#FFF8F0"/>
+  </svg>
+</div>
+
+<!-- KENAPA -->
+<section id="kenapa">
+  <div class="center" style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">Kenapa Pilih Kami?</div>
+    <h2 class="section-title">Kualiti Yang Anda Boleh Percaya</h2>
+    <p class="section-sub">Kami tidak berkompromi dengan kualiti. Setiap ayam dipilih dengan teliti dan diproses mengikut piawaian tertinggi.</p>
+  </div>
+  <div class="kenapa-grid reveal">
+    <div class="kenapa-card">
+      <div class="kenapa-icon">🌿</div>
+      <h3>Dibesarkan Secara Bebas</h3>
+      <p>Ayam kami dibesarkan secara bebas tanpa sangkar, makan makanan semulajadi – lebih sihat &amp; sedap.</p>
+    </div>
+    <div class="kenapa-card">
+      <div class="kenapa-icon">✅</div>
+      <h3>Halal &amp; Bersijil</h3>
+      <p>Semua proses sembelihan mengikut hukum syariat Islam, bersijil JAKIM untuk ketenangan anda.</p>
+    </div>
+    <div class="kenapa-card">
+      <div class="kenapa-icon">❄️</div>
+      <h3>Segar Setiap Hari</h3>
+      <p>Dipotong pada hari yang sama. Kami tidak simpan stok lama – jaminan kesegaran 100%.</p>
+    </div>
+    <div class="kenapa-card">
+      <div class="kenapa-icon">🚚</div>
+      <h3>Hantar Ke Rumah</h3>
+      <p>Penghantaran sejuk-beku ke seluruh kawasan. Tempah sebelum jam 10 pagi, sampai hari yang sama!</p>
+    </div>
+    <div class="kenapa-card">
+      <div class="kenapa-icon">💰</div>
+      <h3>Harga Berpatutan</h3>
+      <p>Terus dari ladang ke tangan anda. Tiada orang tengah, jadi harga lebih jimat untuk anda.</p>
+    </div>
+    <div class="kenapa-card">
+      <div class="kenapa-icon">🤝</div>
+      <h3>Perkhidmatan Mesra</h3>
+      <p>Pasukan kami sedia membantu 7 hari seminggu. Kepuasan pelanggan adalah keutamaan kami.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUK -->
+<section id="produk" class="produk-bg" style="padding: 5rem 2rem;">
+  <div class="center" style="max-width:1100px;margin:0 auto 3rem;">
+    <div class="section-label" style="color:var(--gold);">Menu Produk</div>
+    <h2 class="section-title" style="color:#fff;">Pilih Ayam Kegemaran Anda</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.55);">Pelbagai pilihan ayam segar untuk memenuhi keperluan dapur anda.</p>
+  </div>
+  <div class="produk-grid reveal" style="max-width:1100px;margin:0 auto;">
+
+    <div class="produk-card">
+      <div class="produk-img">🐔<div class="produk-badge">Popular</div></div>
+      <div class="produk-body">
+        <h3>Ayam Kampung Utuh</h3>
+        <p>Ayam kampung asli, diproses bersih. Sesuai untuk masak merah, sup &amp; rebus.</p>
+        <div class="produk-footer">
+          <div class="harga">RM 28 <span>/ ekor ~1.2kg</span></div>
+          <button class="btn-pesan" onclick="pesan('Ayam Kampung Utuh')">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="produk-card">
+      <div class="produk-img">🍗<div class="produk-badge">Jimat</div></div>
+      <div class="produk-body">
+        <h3>Peha &amp; Drumstick</h3>
+        <p>Potongan peha dan drumstick segar, daging lembut dan berlemak. Sesuai untuk goreng &amp; panggang.</p>
+        <div class="produk-footer">
+          <div class="harga">RM 16 <span>/ kg</span></div>
+          <button class="btn-pesan" onclick="pesan('Peha & Drumstick')">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="produk-card">
+      <div class="produk-img">🥩</div>
+      <div class="produk-body">
+        <h3>Dada Tanpa Tulang</h3>
+        <p>Daging dada bersih, rendah lemak, tinggi protein. Pilihan sihat untuk diet &amp; sukan.</p>
+        <div class="produk-footer">
+          <div class="harga">RM 18 <span>/ kg</span></div>
+          <button class="btn-pesan" onclick="pesan('Dada Tanpa Tulang')">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="produk-card">
+      <div class="produk-img">🍖<div class="produk-badge">Baru</div></div>
+      <div class="produk-body">
+        <h3>Ayam Berempah Siap</h3>
+        <p>Dimarinasi dengan rempah pilihan. Tinggal goreng atau panggang – mudah &amp; sedap!</p>
+        <div class="produk-footer">
+          <div class="harga">RM 22 <span>/ kg</span></div>
+          <button class="btn-pesan" onclick="pesan('Ayam Berempah Siap')">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="produk-card">
+      <div class="produk-img">🥚</div>
+      <div class="produk-body">
+        <h3>Telur Kampung Segar</h3>
+        <p>Telur ayam kampung semulajadi, kuning pekat, berkhasiat tinggi. Diambil terus dari ladang.</p>
+        <div class="produk-footer">
+          <div class="harga">RM 14 <span>/ 10 biji</span></div>
+          <button class="btn-pesan" onclick="pesan('Telur Kampung Segar')">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="produk-card">
+      <div class="produk-img">📦<div class="produk-badge">Terbaik</div></div>
+      <div class="produk-body">
+        <h3>Pakej Keluarga</h3>
+        <p>1 ekor ayam utuh + 1kg peha + 10 biji telur. Jimat lebih dengan pakej istimewa ini!</p>
+        <div class="produk-footer">
+          <div class="harga">RM 55 <span>/ pakej</span></div>
+          <button class="btn-pesan" onclick="pesan('Pakej Keluarga')">Pesan</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CARA ORDER -->
+<section id="cara">
+  <div class="center" style="max-width:900px;margin:0 auto;">
+    <div class="section-label">Mudah &amp; Pantas</div>
+    <h2 class="section-title">Cara Untuk Pesan</h2>
+    <p class="section-sub">4 langkah mudah untuk dapatkan ayam segar di pintu rumah anda hari ini.</p>
+  </div>
+  <div class="cara-grid reveal">
+    <div class="cara-card">
+      <div class="cara-num">1</div>
+      <div class="cara-icon">📱</div>
+      <h3>Pilih Produk</h3>
+      <p>Pilih jenis ayam dan kuantiti yang anda inginkan dari senarai produk kami.</p>
+    </div>
+    <div class="cara-card">
+      <div class="cara-num">2</div>
+      <div class="cara-icon">💬</div>
+      <h3>Hubungi WhatsApp</h3>
+      <p>Hantar pesanan melalui WhatsApp. Kami balas dalam masa 5 minit!</p>
+    </div>
+    <div class="cara-card">
+      <div class="cara-num">3</div>
+      <div class="cara-icon">💳</div>
+      <h3>Buat Bayaran</h3>
+      <p>Bayar melalui transfer bank, TnG eWallet atau FPX. Selamat dan mudah.</p>
+    </div>
+    <div class="cara-card">
+      <div class="cara-num">4</div>
+      <div class="cara-icon">🚚</div>
+      <h3>Terima Di Rumah</h3>
+      <p>Ayam segar dihantar terus ke pintu anda dalam kotak sejuk-beku.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testi" class="testi-bg">
+  <div class="center" style="max-width:1000px;margin:0 auto;">
+    <div class="section-label">Apa Kata Mereka?</div>
+    <h2 class="section-title">Pelanggan Gembira, Kami Pun Gembira 😊</h2>
+    <p class="section-sub">Ribuan pelanggan sudah percaya pada kami. Ini adalah pengalaman sebenar mereka.</p>
+  </div>
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Ayam kampung paling sedap yang pernah saya beli! Dagingnya lembut dan manis. Akan order lagi setiap minggu!"</p>
+      <div class="testi-author">
+        <div class="avatar">SA</div>
+        <div>
+          <div class="testi-name">Siti Aminah</div>
+          <div class="testi-loc">📍 Seremban, NS</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Penghantaran cepat, packaging kemas dan ayamnya memang segar. Halal terjamin. Syukran banyak-banyak!"</p>
+      <div class="testi-author">
+        <div class="avatar">AR</div>
+        <div>
+          <div class="testi-name">Ahmad Razif</div>
+          <div class="testi-loc">📍 Kuala Pilah, NS</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">"Saya dah 6 bulan order sini. Harga berpatutan, kualiti konsisten. Pakej keluarga sangat berbaloi!"</p>
+      <div class="testi-author">
+        <div class="avatar">NZ</div>
+        <div>
+          <div class="testi-name">Nurul Zaikha</div>
+          <div class="testi-loc">📍 Port Dickson, NS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <h2>🎉 Dapatkan Diskaun 10% Untuk Order Pertama!</h2>
+  <p>Guna kod promo: <strong style="background:rgba(255,255,255,0.2);padding:3px 12px;border-radius:8px;">AYAM10</strong> semasa order pertama anda</p>
+  <a href="https://wa.me/60123456789?text=Saya%20nak%20order%20ayam%20dengan%20kod%20promo%20AYAM10" class="cta-wa">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.114 1.523 5.843L0 24l6.293-1.496A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.861 0-3.601-.498-5.1-1.366l-.363-.215-3.742.89.933-3.645-.237-.375A9.952 9.952 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+    Pesan Via WhatsApp
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>AyamSegar.my</strong> — Semua hak terpelihara | Halal Bersijil JAKIM | 🇲🇾 Produk Malaysia</p>
+  <p style="margin-top:0.5rem; font-size:0.8rem;">📍 Seremban, Negeri Sembilan &nbsp;|&nbsp; 📞 012-345 6789 &nbsp;|&nbsp; ✉️ info@ayamsegar.my</p>
+</footer>
+
+<!-- FLOAT WA -->
+<a href="https://wa.me/60123456789" class="float-wa" title="WhatsApp Kami">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.114 1.523 5.843L0 24l6.293-1.496A11.942 11.942 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.861 0-3.601-.498-5.1-1.366l-.363-.215-3.742.89.933-3.645-.237-.375A9.952 9.952 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
+</a>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  function pesan(produk) {
+    const msg = encodeURIComponent('Assalamualaikum! Saya ingin memesan *' + produk + '*. Boleh saya dapatkan maklumat lanjut?');
+    window.open('https://wa.me/60123456789?text=' + msg, '_blank');
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Smooth nav highlight
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(26,10,0,0.97)'
+      : 'rgba(26,10,0,0.92)';
+  });
+</script>
+</body>
+</html>
